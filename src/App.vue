@@ -1,14 +1,9 @@
 <template>
-  <HomeCmp />
+  <router-view></router-view>
 </template>
 <script>
-import HomeCmp from './components/pages/HomeCmp.vue'
-
 export default{
-  name: 'App',
-  components: {
-    HomeCmp
-  }
+  name: 'App'
 }
 </script>
 <style>
@@ -24,5 +19,18 @@ export default{
 
 body{
   background-color: black;
+}
+
+.back-row {
+    background-color: rgb(25, 25, 112);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: rgb(150, 150, 150);
 }
 </style>

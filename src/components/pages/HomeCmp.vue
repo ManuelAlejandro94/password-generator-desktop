@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <a href="#">
+                <a href="/password-generated">
                     <CardCmp :cardTitle=card1.title :cardDescription=card1.description />
                 </a>
             </div>
@@ -60,17 +60,5 @@ export default {
     }
 }
 </script>
-<style scoped>
-.back-row {
-    background-color: rgb(25, 25, 112);
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-a:hover {
-    color: rgb(150, 150, 150);
-}
+<style>
 </style>
