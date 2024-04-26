@@ -33,4 +33,13 @@ a {
 a:hover {
     color: rgb(150, 150, 150);
 }
+
+.btnBack{
+    background-color: transparent;
+    border: none;
+}
+
+.btnIconBack{
+  color: rgb(192, 192, 192);
+}
 </style>

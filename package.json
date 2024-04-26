@@ -13,6 +13,8 @@
   },
   "main": "background.js",
   "dependencies": {
+    "axios": "^1.6.8",
+    "clipboard-polyfill": "^4.1.0",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
     "vue-router": "^4.3.2"
