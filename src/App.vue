@@ -42,4 +42,11 @@ a:hover {
 .btnIconBack{
   color: rgb(192, 192, 192);
 }
+
+.generateButton{
+    background-color: rgba(25, 25, 112, 255);
+    color: rgba(192, 192, 192, 255);
+    min-height: 50px;
+    border-radius: 20px;
+}
 </style>

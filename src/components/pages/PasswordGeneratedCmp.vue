@@ -6,7 +6,7 @@
             </button>
         </div>
         <div class="col-8 text-center">
-            <h2>Basic password</h2>
+            <h2>Password generated</h2>
         </div>
     </div>
     <br>
@@ -37,22 +37,26 @@ export default {
     name: 'PasswordGenerated',
     data() {
         return {
-            apiResponse: "Password generating..."
+            apiResponse: "Password generating...",
+            msgErrorLoad: "Failed to load password",
+            length: 0,
+            body: {},
+            methodType: "",
+            title: ""
         }
     },
     mounted() {
-        this.apiRequest()
+        this.executeMethod()
     },
     methods: {
-        apiRequest() {
+        apiRequestDefault() {
             axios.get("https://password-generator-yjm5.onrender.com/v2/generate-password")
                 .then(response => {
                     this.apiResponse = response.data.response;
                 })
                 .catch(error => {
-                    const msg = "Failed to load password";
-                    console.error(msg, error);
-                    this.apiResponse = msg;
+                    console.error(this.msgErrorLoad, error);
+                    this.apiResponse = this.msgErrorLoad;
                 })
         },
         copyPassword() {
@@ -69,15 +73,61 @@ export default {
                 });
         },
         generateNewPassword() {
-            this.apiRequest();
+            this.executeMethod()
         },
         goBack(){
             this.$router.go(-1);
+        },
+        apiRequestCustomize(){
+            axios.post("https://password-generator-yjm5.onrender.com/v2/generate-password-customize", this.body)
+                .then(response => {
+                    this.apiResponse = response.data.response;
+                })
+                .catch(error => {
+                    console.error(this.msgErrorLoad, error);
+                    this.apiResponse = this.msgErrorLoad;
+                })
+        },
+        apiRequestLength() {
+            axios.get(`https://password-generator-yjm5.onrender.com/v2/generate-password-length/${this.length}`)
+                .then(response => {
+                    this.apiResponse = response.data.response
+                })
+                .catch(error => {
+                    console.error(this.msgErrorLoad, error);
+                    this.apiResponse = this.msgErrorLoad;
+                })
+        },
+        apiRequestExact() {
+            axios.post("https://password-generator-yjm5.onrender.com/v2/generate-password-exact", this.body)
+                .then(response => {
+                    this.apiResponse = response.data.response;
+                })
+                .catch(error => {
+                    console.error(this.msgErrorLoad, error);
+                    this.apiResponse = this.msgErrorLoad;
+                })
+        },
+        executeMethod() {
+            this.methodType = history.state.methodType
+            switch (this.methodType) {
+                case "length":
+                    this.length = history.state.length;
+                    this.apiRequestLength();
+                    break;
+                case "custom":
+                    this.body = history.state.body;
+                    this.apiRequestCustomize();
+                    break;
+                case "exact":
+                    this.body = history.state.body;
+                    this.apiRequestExact();
+                    break;
+                default:
+                    this.apiRequestDefault();
+                    break;
+            }
         }
-        //TODO: Make component reusable
-        //[ ] Add method for customize page
-        //[ ] Add method for length page
-        //[ ] Add method for exact page
     }
 }
 </script>
@@ -86,12 +136,7 @@ export default {
     background-color: rgba(255, 255, 255, 178);
     color: black;
     min-height: 50px;
-}
-
-.generateButton{
-    background-color: rgba(25, 25, 112, 255);
-    color: rgba(192, 192, 192, 255);
-    min-height: 50px;
+    border-radius: 20px;
 }
 
 br{
