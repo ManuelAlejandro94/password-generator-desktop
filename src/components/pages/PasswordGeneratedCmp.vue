@@ -50,7 +50,7 @@ export default {
     },
     methods: {
         apiRequestDefault() {
-            axios.get("https://password-generator-yjm5.onrender.com/v2/generate-password")
+            axios.get("https://jmhvrh49e8.execute-api.us-east-2.amazonaws.com/dev/v2/generate-password")
                 .then(response => {
                     this.apiResponse = response.data.response;
                 })
@@ -79,7 +79,7 @@ export default {
             this.$router.go(-1);
         },
         apiRequestCustomize(){
-            axios.post("https://password-generator-yjm5.onrender.com/v2/generate-password-customize", this.body)
+            axios.post("https://jmhvrh49e8.execute-api.us-east-2.amazonaws.com/dev/v2/generate-password-customize", this.body)
                 .then(response => {
                     this.apiResponse = response.data.response;
                 })
@@ -89,7 +89,7 @@ export default {
                 })
         },
         apiRequestLength() {
-            axios.get(`https://password-generator-yjm5.onrender.com/v2/generate-password-length/${this.length}`)
+            axios.get(`https://jmhvrh49e8.execute-api.us-east-2.amazonaws.com/dev/v2/generate-password-length/${this.length}`)
                 .then(response => {
                     this.apiResponse = response.data.response
                 })
@@ -99,7 +99,7 @@ export default {
                 })
         },
         apiRequestExact() {
-            axios.post("https://password-generator-yjm5.onrender.com/v2/generate-password-exact", this.body)
+            axios.post("https://jmhvrh49e8.execute-api.us-east-2.amazonaws.com/dev/v2/generate-password-exact", this.body)
                 .then(response => {
                     this.apiResponse = response.data.response;
                 })
